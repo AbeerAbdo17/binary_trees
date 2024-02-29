@@ -9,25 +9,30 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
+	 bst_t *xtmp;
+
 	if (root == NULL)
-		return NULL;
+		return (NULL);
 
 	if (value < root->n)
 		root->left = bst_remove(root->left, value);
 	else if (value > root->n)
 		root->right = bst_remove(root->right, value);
-	else {
-		if (root->left == NULL) {
-			bst_t *xtmp = root->right;
+	else
+	{
+		if (root->left == NULL)
+		{
+			xtmp = root->right;
 			free(root);
 			return (xtmp);
-		} else if (root->right == NULL) {
-			bst_t *xtmp = root->left;
+		} else if (root->right == NULL)
+		{
+			xtmp = root->left;
 			free(root);
 			return (xtmp);
 		}
 
-		bst_t *xtmp = root->right;
+		xtmp = root->right;
 		while (xtmp->left != NULL)
 			xtmp = xtmp->left;
 
@@ -35,5 +40,5 @@ bst_t *bst_remove(bst_t *root, int value)
 		root->right = bst_remove(root->right, xtmp->n);
 	}
 
-	return root;
+	return (root);
 }
