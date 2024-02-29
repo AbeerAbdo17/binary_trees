@@ -7,21 +7,24 @@
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
+	int xfront = 0, xrear = 0;
+	binary_tree_t *current;
+	binary_tree_t **xqeu;
+
 	if (tree == NULL || func == NULL)
 		return;
 
-	binary_tree_t **xqeu = malloc(sizeof(binary_tree_t *) * 1024);
+	xqeu = malloc(sizeof(binary_tree_t *) * 1024);
 
 	if (xqeu == NULL)
 		return;
 
-	int xfront = 0, xrear = 0;
 
 	xqeu[xrear++] = (binary_tree_t *)tree;
 
 	while (xfront < xrear)
 	{
-		binary_tree_t *current = xqeu[xfront++];
+		current = xqeu[xfront++];
 
 		func(current->n);
 
